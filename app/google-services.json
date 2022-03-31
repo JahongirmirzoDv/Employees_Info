@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "68103387403",
+    "project_id": "employess-info",
+    "storage_bucket": "employess-info.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68103387403:android:5af77d3a1e77d866508a0e",
+        "android_client_info": {
+          "package_name": "me.ruyeo.employeesinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68103387403-h6p9dfs6nln4bpqlq4u8qb1ktjur9mmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.ruyeo.employeesinfo",
+            "certificate_hash": "67bf91b349a76c44d71c481d5a149464bf5f8e48"
+          }
+        },
+        {
+          "client_id": "68103387403-035pelfvv7uvkscpgvv6mdsl9rqo55qb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj9vRsI9WYomkRiSwoEGdCdOPC3ACXWus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68103387403-035pelfvv7uvkscpgvv6mdsl9rqo55qb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
