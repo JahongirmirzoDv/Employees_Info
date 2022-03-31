@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/activity_scanning.xml" value="0.221025641025641" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/fragment_camera.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/fragment_information.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/fragment_login.xml" value="0.221025641025641" />
+        <entry key="..\:/Users/jahon/Ishchi stol/EmployeesInfo/app/src/main/res/layout/fragment_scanning.xml" value="0.22" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

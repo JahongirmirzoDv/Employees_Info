@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.EmployeesInfo" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/scanner_line</item>
+        <item name="colorSecondaryVariant">@color/scanner_line</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!-- Customize your theme here. -->
+
+        <item name="customBgColor">@color/customBgColor</item>
+        <item name="customTextHintColor">@color/customTextHintColor</item>
+        <item name="customButtonBackgroundColor">@color/customButtonBackgroundColor</item>
+        <item name="customIconColor">@color/customIconColor</item>
+        <item name="customEdittextBackgroundColor">@color/customEdittextBackgroundColor</item>
+        <item name="customTextColor">@color/customTextColor</item>
+        <item name="customButtonTextColor">@color/customButtonTextColor</item>
+    </style>
+
+    <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+    </style>
+
+    <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="background">@drawable/password_bg</item>
+    </style>
+</resources>

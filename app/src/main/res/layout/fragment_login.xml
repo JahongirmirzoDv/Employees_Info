@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".view.LoginFragment">
+
+    <ImageView
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_gravity="center"
+        android:src="@drawable/rectangle_175"
+        android:layout_marginTop="80dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textColorHint="@color/customTextHintColor"
+        app:hintTextColor="?attr/customTextHintColor"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconTint="?attr/customIconColor"
+        app:boxBackgroundColor="?attr/customEdittextBackgroundColor"
+        app:shapeAppearance="@style/Rounded"
+        app:boxStrokeColor="?attr/customEdittextBackgroundColor"
+        app:boxStrokeWidthFocused="0.5dp"
+        app:boxStrokeWidth="0.5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColor="?attr/customTextHintColor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textColorHint="@color/customTextHintColor"
+        app:hintTextColor="?attr/customTextHintColor"
+        app:startIconTint="?attr/customIconColor"
+        app:boxBackgroundColor="?attr/customEdittextBackgroundColor"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        app:endIconMode="password_toggle"
+        app:endIconTint="?attr/customIconColor"
+        app:shapeAppearance="@style/Rounded"
+        app:boxStrokeColor="?attr/customEdittextBackgroundColor"
+        app:boxStrokeWidthFocused="0.5dp"
+        app:boxStrokeWidth="0.5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_et"
+            android:padding="16dp"
+            android:inputType="textPassword"
+            android:fontFamily="@font/montserrat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/customTextHintColor"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
+        android:textColor="?attr/customButtonTextColor"
+        android:background="@drawable/login_rounded"
+        android:text="@string/tizimga_kirish"/>
+</LinearLayout>

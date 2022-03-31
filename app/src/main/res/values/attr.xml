@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="customTextColor" format="reference"/>
+    <attr name="customTextHintColor" format="reference"/>
+    <attr name="customBgColor" format="reference"/>
+    <attr name="customButtonBackgroundColor" format="reference"/>
+    <attr name="customEdittextBackgroundColor" format="reference"/>
+    <attr name="customIconColor" format="reference"/>
+    <attr name="customButtonTextColor" format="reference"/>
+</resources>

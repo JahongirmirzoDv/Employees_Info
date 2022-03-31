@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_rounded"
+    android:theme="@style/DialogStyle">
+
+    <TextView
+        android:id="@+id/come"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parolni kiriting"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:id="@+id/not_found_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kiriting"
+        android:inputType="numberPassword"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textColorHint="@color/grey"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/come"/>
+
+    <Button
+        android:id="@+id/sell_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_below="@id/not_found_txt"
+        android:background="@drawable/rounded_dark"
+        android:text="Tasdiqlash"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Employees Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="tizimga_kirish">Tizimga Kirish</string>
+    <string name="asosiy">Asosiy</string>
+    <string name="chiqish">Chiqish</string>
+    <string name="kelish">Kelish</string>
+    <string name="ketish">Ketish</string>
+    <string name="tushlikka_chiqish">Tushlikka&#x0A;Chiqish</string>
+    <string name="tushlikdan_qaytish">Tushlikdan Qaytish</string>
+    <string name="ism_va_familiya">Ism va Familiya</string>
+    <string name="lavozim">Lavozim</string>
+    <string name="kelgan_vaqti">Kelgan vaqti</string>
+    <string name="filial">Filial</string>
+    <string name="ok">Ok</string>
+</resources>
