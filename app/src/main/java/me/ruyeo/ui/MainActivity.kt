@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
         }"
 
         NetworkConnectionLiveData(applicationContext).observe(this) { isConnected ->
-            if (isConnected){
+            if (isConnected) {
                 GlobalScope.launch(Dispatchers.Main) {
                     async {
                         val hashMap1 = HashMap<String, Any>()
-                        scanningViewModel.getFlow()
-                            .observe(this@MainActivity) { flow ->
+                        scanningViewModel.getFlow().observe(this@MainActivity) { flow ->
+                            if (flow != null) {
                                 if (flow.cameTime != null) {
                                     hashMap1["staff"] = flow.staffId
                                     hashMap1["came"] = flow.cameTime
@@ -80,11 +80,13 @@ class MainActivity : AppCompatActivity() {
                                     Log.e("offline_work", "offline came_lunch sended")
                                 }
                             }
+                        }
                     }
                 }
             }
         }
     }
+
     private fun initViewModel() = ViewModelProvider(
         this,
         ScanningViewModelFactory(
@@ -96,5 +98,5 @@ class MainActivity : AppCompatActivity() {
             ), AppDatabase.getDatabase(this),
             appDatabase.getFlowDao()
         )
-    ).get(ScanningViewModel::class.java)
+    )[ScanningViewModel::class.java]
 }

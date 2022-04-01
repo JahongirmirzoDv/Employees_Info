@@ -45,7 +45,6 @@ object ApiClient {
                 chain.proceed(request)
             })
         if (BuildConfig.DEBUG) {
-            // Debug holatdan keyin o`chirish kerak!!!!!!!!!!!!!!!!!!!!!!!
             builder.addInterceptor(interceptor)
             builder.addInterceptor(chucker)
         }
