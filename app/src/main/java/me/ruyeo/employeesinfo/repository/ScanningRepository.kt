@@ -13,7 +13,9 @@ import retrofit2.http.Body
 class ScanningRepository(private val apiHelper: ApiHelper, private val appDatabase: AppDatabase,private val flowDao: FlowDao) {
 
     suspend fun sendFlow(map: HashMap<String,Any>?) = apiHelper.sendFlow(map)
+    suspend fun sendFlowAction(map: HashMap<String,Any>?) = apiHelper.sendFlowAction(map)
     suspend fun sendFlowWent(id: Int,map: HashMap<String,Any>?) = apiHelper.sendFlowWent(id,map)
+    suspend fun sendFlowWentAction(id: Int,map: HashMap<String,Any>?) = apiHelper.sendFlowWentAction(id,map)
     fun getFlow() = appDatabase.getFlowDao().getFlow()
     fun insertFlow(flowModel: FlowModel) = appDatabase.getFlowDao().insertFlow(flowModel)
     fun deleteFlow() = appDatabase.getFlowDao().deleteFlow()

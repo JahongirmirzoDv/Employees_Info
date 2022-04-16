@@ -17,9 +17,13 @@ class ApiHelper(private val apiService: ApiService) {
      */
     suspend fun sendFlow(map: HashMap<String,Any>?) =
         apiService.sendFlow(map)
+    suspend fun sendFlowAction(map: HashMap<String,Any>?) =
+        apiService.sendFlowAction(map)
 
     suspend fun sendFlowWent(id: Int,map: HashMap<String,Any>?) =
         apiService.sendFlowWent(id,map)
+    suspend fun sendFlowWentAction(id: Int,map: HashMap<String,Any>?) =
+        apiService.sendFlowWentAction(id,map)
 
 //    suspend fun registration(map: HashMap<String, Any>?) = apiService.registration(map)
 

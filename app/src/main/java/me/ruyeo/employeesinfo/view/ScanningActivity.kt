@@ -235,7 +235,7 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                     val staff = appDatabase.getStaffDao().getStaffById(recognition.id)
                     userData.value = staff
 
-                    Log.d("Test", staff.firstName)
+//                    Log.d("Test", staff.firstName)
 
                     val mcurrentTime = Calendar.getInstance()
                     val month = mcurrentTime.get(Calendar.MONTH) + 1
@@ -316,29 +316,38 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                         } else {
                             idWent = SharedPref(this).getId()
                             val hashMap = HashMap<String, Any>()
+                            val hashMapAction = HashMap<String, Any>()
                             when (come) {
                                 1 -> {
                                     hashMap["staff"] = staff.id
+                                    hashMapAction["staff"] = staff.id
                                     hashMap["came"] = date
                                     scanningViewModel.sendFlow(hashMap)
+                                    scanningViewModel.sendFlowAction(hashMap)
                                 }
                                 2 -> {
                                     hashMap["staff"] = staff.id
+                                    hashMapAction["staff"] = staff.id
                                     hashMap["went"] = date
                                     idWent = SharedPref(this).getId()
                                     scanningViewModel.sendFlowWent(idWent, hashMap)
+                                    scanningViewModel.sendFlowWentAction(idWent,hashMap)
                                 }
                                 3 -> {
                                     hashMap["staff"] = staff.id
+                                    hashMapAction["staff"] = staff.id
                                     hashMap["went_lunch"] = date
                                     idWent = SharedPref(this).getId()
                                     scanningViewModel.sendFlowWent(idWent, hashMap)
+                                    scanningViewModel.sendFlowWentAction(idWent, hashMap)
                                 }
                                 4 -> {
                                     hashMap["staff"] = staff.id
+                                    hashMapAction["staff"] = staff.id
                                     hashMap["came_lunch"] = date
                                     idWent = SharedPref(this).getId()
                                     scanningViewModel.sendFlow(hashMap)
+                                    scanningViewModel.sendFlowAction(hashMap)
                                 }
                             }
 
@@ -439,8 +448,8 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                         Xatolik bo`lsa 4sekund toast ko`rsatib, keyin keyingi so`rovga
                         ruxsat berish
                          */
-                        Utils.toastLong(this@ScanningActivity, it.message)
-                        Log.d("errs", it.message + "sa")
+//                        Utils.toastLong(this@ScanningActivity, it.message)
+//                        Log.d("errs", it.message + "sa")
                         delay(4000)
                         isFlowPostSent = false
                     }
@@ -493,8 +502,8 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                         Xatolik bo`lsa 4sekund toast ko`rsatib, keyin keyingi so`rovga
                         ruxsat berish
                          */
-                        Utils.toastLong(this@ScanningActivity, it.message)
-                        Log.d("errs", it.message + "sa")
+//                        Utils.toastLong(this@ScanningActivity, it.message)
+//                        Log.d("errs", it.message + "sa")
                         delay(4000)
                         isFlowPostSent = false
                     }

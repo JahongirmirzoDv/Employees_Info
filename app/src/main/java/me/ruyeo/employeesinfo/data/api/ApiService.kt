@@ -32,8 +32,15 @@ interface ApiService {
     @POST("flow/")
     suspend fun sendFlow(@Body map: HashMap<String,Any>?): ResponseObject
 
+    @POST("flow/my_action/")
+    suspend fun sendFlowAction(@Body map: HashMap<String,Any>?): ResponseObject
+
     @PUT("flow/{id}/")
     suspend fun sendFlowWent(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
+
+    @PUT("flow/{id}/")
+    suspend fun sendFlowWentAction(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
+
 
     //    @POST("login")
 //    @FormUrlEncoded
