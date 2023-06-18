@@ -13,6 +13,7 @@ import me.ruyeo.employeesinfo.data.api.ApiClient
 import me.ruyeo.employeesinfo.data.api.ApiHelper
 import me.ruyeo.employeesinfo.data.api.ApiService
 import me.ruyeo.employeesinfo.data.local.AppDatabase
+import me.ruyeo.employeesinfo.data.model.FlowModel
 import me.ruyeo.employeesinfo.repository.factory.ScanningViewModelFactory
 import me.ruyeo.employeesinfo.viewModel.ScanningViewModel
 import java.util.*
@@ -56,33 +57,70 @@ class MainActivity : AppCompatActivity() {
                                     hashMap1["staff"] = flow.staffId
                                     hashMap1["came"] = flow.cameTime
                                     scanningViewModel.sendFlow(hashMap1)
+                                    scanningViewModel.updateFlow(
+                                        FlowModel(
+                                            flow.staffId,
+                                            came_lunch = flow.came_lunch,
+                                            went_lunch = flow.went_lunch,
+                                            cameTime = null,
+                                            wentTime = flow.wentTime
+                                        )
+                                    )
                                     Log.e("offline_work", "offline come sended")
                                 }
                                 if (flow.wentTime != null) {
                                     hashMap1["staff"] = flow.staffId
                                     hashMap1["went"] = date
                                     idWent = SharedPref(this@MainActivity).getId()
-                                    scanningViewModel.sendFlowWent(idWent, hashMap1)
+                                    scanningViewModel.sendWent(hashMap1)
+                                    scanningViewModel.updateFlow(
+                                        FlowModel(
+                                            flow.staffId,
+                                            came_lunch = flow.came_lunch,
+                                            went_lunch = flow.went_lunch,
+                                            cameTime = flow.cameTime,
+                                            wentTime = null
+                                        )
+                                    )
                                     Log.e("offline_work", "offline went sended")
                                 }
                                 if (flow.went_lunch != null) {
                                     hashMap1["staff"] = flow.staffId
                                     hashMap1["went_lunch"] = date
                                     idWent = SharedPref(this@MainActivity).getId()
-                                    scanningViewModel.sendFlowWent(idWent, hashMap1)
+                                    scanningViewModel.sendWentLaunch(hashMap1)
+                                    scanningViewModel.updateFlow(
+                                        FlowModel(
+                                            flow.staffId,
+                                            came_lunch = flow.came_lunch,
+                                            went_lunch = null,
+                                            cameTime = flow.cameTime,
+                                            wentTime = flow.wentTime
+                                        )
+                                    )
                                     Log.e("offline_work", "offline went_lunch sended")
                                 }
                                 if (flow.came_lunch != null) {
                                     hashMap1["staff"] = flow.staffId
                                     hashMap1["came_lunch"] = flow.came_lunch
                                     idWent = SharedPref(this@MainActivity).getId()
-                                    scanningViewModel.sendFlow(hashMap1)
+                                    scanningViewModel.sendCameLaunch(hashMap1)
+                                    scanningViewModel.updateFlow(
+                                        FlowModel(
+                                            flow.staffId,
+                                            came_lunch = null,
+                                            went_lunch = flow.went_lunch,
+                                            cameTime = flow.cameTime,
+                                            wentTime = flow.wentTime
+                                        )
+                                    )
                                     Log.e("offline_work", "offline came_lunch sended")
                                 }
                             }
                         }
                     }
                 }
+//                appDatabase.getFlowDao().deleteFlow()
             }
         }
     }

@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "me.ruyeo.employeesinfo"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -40,40 +40,47 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'me.ruyeo.employeesinfo'
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'joda-time:joda-time:2.10.10'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
-    implementation 'com.google.firebase:firebase-analytics:20.1.2'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.6'
+    implementation 'com.google.firebase:firebase-analytics:21.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Google
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
     // SquareUp
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     // for interceptor
-    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+//    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+//    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+
+
+    implementation 'com.karumi:dexter:6.2.3'
 
     //pluto
-    debugImplementation 'com.mocklets:pluto:1.0.1'
-    releaseImplementation'com.mocklets:pluto-no-op:1.0.1'
+    debugImplementation 'com.plutolib:pluto:2.0.6'
+    releaseImplementation 'com.plutolib:pluto-no-op:2.0.6'
+
+    debugImplementation 'com.plutolib.plugins:network:2.0.5'
+    releaseImplementation 'com.plutolib.plugins:network-no-op:2.0.5'
 
     // Lifecycle ViewModel LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
@@ -83,7 +90,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // Coroutine
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //firebase ml kit tenserflow
@@ -103,7 +110,7 @@ dependencies {
     implementation ('org.tensorflow:tensorflow-lite:2.4.0') { changing = true }
 
     //Google ML Kit Face Detection
-    implementation 'com.google.mlkit:face-detection:16.1.1'
+    implementation 'com.google.mlkit:face-detection:16.1.5'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -112,8 +119,8 @@ dependencies {
     implementation 'joda-time:joda-time:2.10.10'
 
     //Room
-    implementation "androidx.room:room-ktx:2.3.0"
-    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.5.1"
+    kapt "androidx.room:room-compiler:2.5.1"
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

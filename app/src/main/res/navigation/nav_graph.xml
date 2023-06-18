@@ -9,7 +9,7 @@
         android:id="@+id/scanningFragment"
         android:name="me.ruyeo.employeesinfo.view.ScanningFragment"
         android:label="fragment_scanning"
-        tools:layout="@layout/fragment_scanning" >
+        tools:layout="@layout/fragment_scanning">
         <argument
             android:name="isCome"
             app:argType="integer" />
@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_scanningActivity"
+            app:destination="@id/scanningActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -35,4 +38,12 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <activity
+        android:id="@+id/scanningActivity"
+        android:name="me.ruyeo.employeesinfo.view.ScanningActivity"
+        android:label="activity_scanning"
+        tools:layout="@layout/activity_scanning" />
+    <argument
+        android:name="isCome"
+        app:argType="integer" />
 </navigation>

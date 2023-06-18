@@ -1,9 +1,9 @@
 package me.ruyeo.employeesinfo.data.api
 
 import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.miguelcatalan.materialsearchview.BuildConfig
-import com.mocklets.pluto.PlutoInterceptor
+import com.pluto.Pluto
+import com.pluto.plugins.network.PlutoInterceptor
 import me.ruyeo.employeesinfo.data.model.TokenManager
 import me.ruyeo.ui.App
 
@@ -17,7 +17,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://hr.backoffice.uz/api/v1/"
+    private const val BASE_URL = "http://164.92.180.101:8000/api/v1/"
     private val client = buildClient()
 
     private val retrofit = buildRetrofit(client)
@@ -32,7 +32,7 @@ object ApiClient {
 
     private fun buildClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
-        val chucker= ChuckerInterceptor.Builder(App.instance).build()
+//        val chucker= ChuckerInterceptor.Builder(App.instance).build()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val builder = OkHttpClient.Builder()
             .addInterceptor(PlutoInterceptor())
@@ -46,7 +46,7 @@ object ApiClient {
             })
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(interceptor)
-            builder.addInterceptor(chucker)
+
         }
         return builder.build()
     }

@@ -1,6 +1,8 @@
 package me.ruyeo.employeesinfo.view
 
+import android.Manifest
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,8 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import dmax.dialog.SpotsDialog
-import kotlinx.coroutines.flow.collect
 import me.ruyeo.employeesinfo.R
 import me.ruyeo.employeesinfo.SharedPref
 import me.ruyeo.employeesinfo.data.api.ApiClient
@@ -23,6 +30,7 @@ import me.ruyeo.employeesinfo.utils.Utils
 import me.ruyeo.employeesinfo.utils.extensions.viewBinding
 import me.ruyeo.employeesinfo.viewModel.LoginViewModel
 
+
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val binding by viewBinding { FragmentLoginBinding.bind(it) }
     private val navController by lazy { Navigation.findNavController(binding.root) }
@@ -31,6 +39,25 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Dexter.withContext(requireActivity())
+                .withPermission(Manifest.permission.POST_NOTIFICATIONS)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(response: PermissionGrantedResponse) { /* ... */
+                    }
+
+                    override fun onPermissionDenied(response: PermissionDeniedResponse) { /* ... */
+                    }
+
+                    override fun onPermissionRationaleShouldBeShown(
+                        permission: PermissionRequest?,
+                        token: PermissionToken?
+                    ) { /* ... */
+                    }
+                }).check()
+        }
 
         TokenManager.getInstance(
             requireActivity().getSharedPreferences(

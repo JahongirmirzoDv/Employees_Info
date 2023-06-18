@@ -14,13 +14,9 @@ inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
     }
 
 fun FragmentActivity.changeStatusBarColor(color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        window.statusBarColor = color
-    }
+    window.statusBarColor = color
 }
 
 fun FragmentActivity.changeNavigationBarColor(color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        window.navigationBarColor = color
-    }
+    window.navigationBarColor = color
 }

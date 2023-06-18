@@ -35,11 +35,25 @@ interface ApiService {
     @POST("flow/my_action/")
     suspend fun sendFlowAction(@Body map: HashMap<String,Any>?): ResponseObject
 
-    @PUT("flow/{id}/")
-    suspend fun sendFlowWent(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
+//    @PUT("flow/{id}/")
+//    suspend fun sendFlowWent(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
+//
+//    @PUT("flow/{id}/")
+//    suspend fun sendFlowWentAction(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
 
-    @PUT("flow/{id}/")
-    suspend fun sendFlowWentAction(@Path("id") id: Int, @Body map: HashMap<String,Any>?)
+
+    @PUT("flow/")
+    suspend fun sendFlowWent(@Body map: HashMap<String,Any>?)
+
+    @POST("flow/went/")
+    suspend fun sendWent(@Body map: HashMap<String,Any>?)
+    @POST("flow/went_launch/")
+    suspend fun sendWentLaunch(@Body map: HashMap<String,Any>?)
+    @POST("flow/came_launch/")
+    suspend fun sendCameLaunch(@Body map: HashMap<String,Any>?)
+
+    @POST("kitchen")
+    suspend fun kitchen(@Body map: HashMap<String, Any>?)
 
 
     //    @POST("login")

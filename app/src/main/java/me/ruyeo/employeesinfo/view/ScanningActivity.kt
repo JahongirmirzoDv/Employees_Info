@@ -29,6 +29,8 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -100,6 +102,8 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
      */
     private val lastRecognized = MutableLiveData<Recognition>()
 
+    private var _lastRecognized:Recognition? = null
+
     /**
     Keldi ketdi haqida oxirgi muvaffaqiyatli so`rov yuborilgan xodim id si
     Agar /flow request ga javob kelganda, xodim kameraga qarab turgan bo`lsa,
@@ -170,6 +174,10 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                 findViewById<TextView>(R.id.idScanningTv).text =
                     getString(R.string.tushlikdan_qaytish)
             }
+            5 -> {
+                findViewById<TextView>(R.id.idScanningTv).text =
+                    getString(R.string.kitchen)
+            }
         }
 
         setOnClickListeners()
@@ -178,9 +186,9 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
         userData = MutableLiveData()
 
         val options = FaceDetectorOptions.Builder()
-            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
-            .setContourMode(FaceDetectorOptions.LANDMARK_MODE_NONE)
-            .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_NONE)
+            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+            .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+            .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
             .build()
         faceDetector = FaceDetection.getClient(options)
     }
@@ -312,45 +320,53 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                                         )
                                     }
                                 }
+                                5 -> {}
                             }
                         } else {
                             idWent = SharedPref(this).getId()
                             val hashMap = HashMap<String, Any>()
                             val hashMapAction = HashMap<String, Any>()
-                            when (come) {
-                                1 -> {
-                                    hashMap["staff"] = staff.id
-                                    hashMapAction["staff"] = staff.id
-                                    hashMap["came"] = date
-                                    scanningViewModel.sendFlow(hashMap)
-                                    scanningViewModel.sendFlowAction(hashMap)
-                                }
-                                2 -> {
-                                    hashMap["staff"] = staff.id
-                                    hashMapAction["staff"] = staff.id
-                                    hashMap["went"] = date
-                                    idWent = SharedPref(this).getId()
-                                    scanningViewModel.sendFlowWent(idWent, hashMap)
-                                    scanningViewModel.sendFlowWentAction(idWent,hashMap)
-                                }
-                                3 -> {
-                                    hashMap["staff"] = staff.id
-                                    hashMapAction["staff"] = staff.id
-                                    hashMap["went_lunch"] = date
-                                    idWent = SharedPref(this).getId()
-                                    scanningViewModel.sendFlowWent(idWent, hashMap)
-                                    scanningViewModel.sendFlowWentAction(idWent, hashMap)
-                                }
-                                4 -> {
-                                    hashMap["staff"] = staff.id
-                                    hashMapAction["staff"] = staff.id
-                                    hashMap["came_lunch"] = date
-                                    idWent = SharedPref(this).getId()
-                                    scanningViewModel.sendFlow(hashMap)
-                                    scanningViewModel.sendFlowAction(hashMap)
-                                }
-                            }
-
+                           if (_lastRecognized != recognition){
+                               when (come) {
+                                   1 -> {
+                                       hashMap["staff"] = staff.id
+                                       hashMapAction["staff"] = staff.id
+                                       hashMap["came"] = date
+                                       scanningViewModel.sendFlow(hashMap)
+//                                       scanningViewModel.sendFlowAction(hashMap)
+                                   }
+                                   2 -> {
+                                       hashMap["staff"] = staff.id
+                                       hashMapAction["staff"] = staff.id
+                                       hashMap["went"] = date
+                                       idWent = SharedPref(this).getId()
+                                       scanningViewModel.sendWent(hashMap)
+//                                       scanningViewModel.sendFlowAction(hashMap)
+                                   }
+                                   3 -> {
+                                       hashMap["staff"] = staff.id
+                                       hashMapAction["staff"] = staff.id
+                                       hashMap["went_lunch"] = date
+                                       idWent = SharedPref(this).getId()
+                                       scanningViewModel.sendWentLaunch(hashMap)
+//                                       scanningViewModel.sendFlowAction(hashMap)
+                                   }
+                                   4 -> {
+                                       hashMap["staff"] = staff.id
+                                       hashMapAction["staff"] = staff.id
+                                       hashMap["came_lunch"] = date
+                                       idWent = SharedPref(this).getId()
+                                       scanningViewModel.sendCameLaunch(hashMap)
+//                                       scanningViewModel.sendFlowAction(hashMap)
+                                   }
+                                   5 -> {
+                                       hashMap["staff"] = staff.id
+                                       scanningViewModel.kitchen(hashMap)
+                                   }
+                               }
+                           }
+//                            appDatabase.
+                            _lastRecognized  = recognition
                         }
                         isFlowPostSent = true
                     }
@@ -598,19 +614,23 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                         hashMap["staff"] = staff.id
                         hashMap["went"] = date
                         idWent = SharedPref(this).getId()
-                        scanningViewModel.sendFlowWent(idWent, hashMap)
+                        scanningViewModel.sendWent(hashMap)
                     }
                     3 -> {
                         hashMap["staff"] = staff.id
                         hashMap["went_lunch"] = date
                         idWent = SharedPref(this).getId()
-                        scanningViewModel.sendFlowWent(idWent, hashMap)
+                        scanningViewModel.sendWentLaunch(hashMap)
                     }
                     4 -> {
                         hashMap["staff"] = staff.id
                         hashMap["came_lunch"] = date
                         idWent = SharedPref(this).getId()
-                        scanningViewModel.sendFlowWent(idWent, hashMap)
+                        scanningViewModel.sendCameLaunch(hashMap)
+                    }
+                    5 -> {
+                        hashMap["staff"] = staff.id
+                        scanningViewModel.kitchen(hashMap)
                     }
                 }
             }
@@ -700,6 +720,10 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
                     v.findViewById<TextView>(R.id.idScanningTv).text =
                         getString(R.string.tushlikdan_qaytish)
                 }
+                5 -> {
+                    v.findViewById<TextView>(R.id.idScanningTv).text =
+                        getString(R.string.kitchen)
+                }
             }
 
             Log.d("logick", "ok")
@@ -712,6 +736,7 @@ class ScanningActivity : BaseCameraActivity(), OnImageAvailableListener {
 
             sell.setOnClickListener {
                 dismiss()
+                ActivityNavigator(this@ScanningActivity).popBackStack()
             }
             show()
         }

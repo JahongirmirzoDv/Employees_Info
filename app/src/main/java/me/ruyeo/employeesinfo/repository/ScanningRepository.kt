@@ -14,10 +14,15 @@ class ScanningRepository(private val apiHelper: ApiHelper, private val appDataba
 
     suspend fun sendFlow(map: HashMap<String,Any>?) = apiHelper.sendFlow(map)
     suspend fun sendFlowAction(map: HashMap<String,Any>?) = apiHelper.sendFlowAction(map)
-    suspend fun sendFlowWent(id: Int,map: HashMap<String,Any>?) = apiHelper.sendFlowWent(id,map)
-    suspend fun sendFlowWentAction(id: Int,map: HashMap<String,Any>?) = apiHelper.sendFlowWentAction(id,map)
+    suspend fun sendFlowWent(map: HashMap<String,Any>?) = apiHelper.sendFlowWent(map)
+    suspend fun sendWent(map: HashMap<String,Any>?) = apiHelper.sendWent(map)
+    suspend fun sendCameLaunch(map: HashMap<String,Any>?) = apiHelper.sendCameLaunch(map)
+    suspend fun sendWentLaunch(map: HashMap<String,Any>?) = apiHelper.sendWentLaunch(map)
+    suspend fun kitchen(map: HashMap<String,Any>?) = apiHelper.kitchen(map)
+//    suspend fun sendFlowWentAction(id: Int,map: HashMap<String,Any>?) = apiHelper.sendFlowWentAction(id,map)
     fun getFlow() = appDatabase.getFlowDao().getFlow()
     fun insertFlow(flowModel: FlowModel) = appDatabase.getFlowDao().insertFlow(flowModel)
+    fun updateFlow(flowModel: FlowModel) = appDatabase.getFlowDao().updateFlow(flowModel)
     fun deleteFlow() = appDatabase.getFlowDao().deleteFlow()
 
 //    fun getFlowWent() = appDatabase.getFlowDao().getFlowWent()

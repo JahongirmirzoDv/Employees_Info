@@ -14,6 +14,8 @@ interface FlowDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFlow(flowModel: FlowModel)
 
+    @Update
+    fun updateFlow(flowModel: FlowModel)
     @Query("DELETE FROM flow_table")
     fun deleteFlow()
 

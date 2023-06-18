@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper.getMainLooper
@@ -13,10 +14,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.Navigation
 import dmax.dialog.SpotsDialog
-import kotlinx.coroutines.flow.collect
 import me.ruyeo.employeesinfo.R
 import me.ruyeo.employeesinfo.data.api.ApiClient
 import me.ruyeo.employeesinfo.data.api.ApiHelper
@@ -29,7 +35,9 @@ import me.ruyeo.employeesinfo.utils.Utils
 import me.ruyeo.employeesinfo.utils.extensions.viewBinding
 import me.ruyeo.employeesinfo.viewModel.HomeViewModel
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -68,11 +76,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun checkPermission(): Boolean {
         val result = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
         val result1 = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED
+        val result2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.USE_BIOMETRIC)
+        } else {
+            TODO("VERSION.SDK_INT < P")
+        }
+        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.USE_BIOMETRIC), 1)
     }
 
     private fun setupUI() {
@@ -89,13 +102,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }, 10)
 
         binding.apply {
-            date.observe(viewLifecycleOwner,{date ->
+            date.observe(viewLifecycleOwner) { date ->
                 idCurrentDate.text = date
-            })
-            time.observe(viewLifecycleOwner,{time ->
+            }
+            time.observe(viewLifecycleOwner) { time ->
                 idCurrentTime.text = time
 
-            })
+            }
             idCurrentDate.text = SimpleDateFormat("MM/dd/yyyy", Locale.US).format(Date())
             idCurrentTime.text = SimpleDateFormat("HH:mm:ss", Locale.US).format(Date())
 //            idCurrentLocation.text =
@@ -103,6 +116,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             idWentFromWork.setOnClickListener { navigateToScanningFrag(2) }
             idGoToLunch.setOnClickListener { navigateToScanningFrag(3) }
             idBackFromLaunch.setOnClickListener { navigateToScanningFrag(4) }
+            kitchen.setOnClickListener { navigateToScanningFrag(5) }
             idExit.setOnClickListener {
                 val dialogBuilder = AlertDialog.Builder(requireContext())
                 dialogBuilder.setMessage("Are you sure to Log out?")
@@ -221,8 +235,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun navigateToScanningFrag(isCome: Int) {
         val intent = Intent(requireActivity(), ScanningActivity::class.java)
         intent.putExtra("come", isCome)
-        startActivity(intent)
-//        navController.navigate(HomeFragmentDirections.actionHomeFragmentToScanningFragment(isCome))
-    }
+//        startActivity(intent)
+//        onpress.onDataPass(isCome)
+//        navController.navigate(R.id.scanningActivity)
 
+
+        val activityNavigator = ActivityNavigator(requireContext())
+        activityNavigator.navigate(
+            activityNavigator.createDestination().setIntent(
+               intent
+            ), null, null, null
+        )
+    }
 }
+

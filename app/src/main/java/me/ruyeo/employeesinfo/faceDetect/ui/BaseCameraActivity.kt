@@ -125,7 +125,7 @@ abstract class BaseCameraActivity : AppCompatActivity(), OnImageAvailableListene
             CameraCharacteristics.LENS_FACING_FRONT
         }
         intent.putExtra(KEY_USE_FACING, useFacing)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         restartWith(intent)
     }
 
